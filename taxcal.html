@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Tax Calculator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #ff0000;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        input {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid #ff0000;
+            box-sizing: border-box;
+            max-width: 30%;
+            font-size: 18px;
+        }
+
+        button {
+            background-color: #ff0000;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c80000;
+        }
+
+        #taxResult {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Indian Tax Calculator</h1>
+    <label for="income">Enter your income (in INR):</label>
+    <input type="number" id="income" placeholder="Enter your income"><br><br>
+    <button onclick="calculateTax()">Calculate Tax</button><br><br>
+    <div id="taxResult"></div>
+
+    <script>
+        function calculateTax() {
+            var income = document.getElementById('income').value;
+            if (income === "" || income <= 0) {
+                document.getElementById('taxResult').innerHTML = "Please enter a valid income.";
+            } else {
+                var tax;
+                if (income <= 250000) {
+                    tax = 0;
+                } else if (income <= 500000) {
+                    tax = income * 0.05;
+                } else if (income <= 1000000) {
+                    tax = (income - 500000) * 0.1 + 25000;
+                } else {
+                    tax = (income - 1000000) * 0.3 + 125000;
+                }
+
+                document.getElementById('taxResult').innerHTML = "Income Tax: ₹" + tax.toFixed(2);
+            }
+        }
+    </script>
+</body>
+
+</html>
